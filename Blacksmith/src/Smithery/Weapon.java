@@ -5,7 +5,7 @@ public class Weapon {
 	public int cost;
 	public int totalDMG;
 	public int physDMG;
-	public double attSpeed;
+	public int attSpeed;
 	public int dps;
 	public Material material;
 	public WeaponPrototype weaponPrototype;
@@ -25,7 +25,7 @@ public class Weapon {
 		System.out.println(this.material.name + " " + this.weaponPrototype.name);
 		System.out.println("Physical Damage: " + this.physDMG);
 		System.out.println("Total Damage: " + this.totalDMG);
-		System.out.println("Attack Speed: " + this.attSpeed);
+		System.out.println("Attack Speed: " + this.attSpeed/10.0);
 		System.out.println("DPS: " + this.dps);
 		System.out.println("Cost: " + this.cost);
 		

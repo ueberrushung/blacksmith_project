@@ -7,6 +7,8 @@ public class Battle {
 	
 	public Monster monster;
 	public Attacker attacker;
+	public static int deciseconds = 0;
+	public static int attTime = 0;
 	
 	
 	public Battle( Attacker attacker, Monster monster) {
@@ -25,8 +27,21 @@ public class Battle {
 	}
 	
 	private void attack() {
-		this.monster.hp -= this.attacker.weapon.totalDMG;
-		System.out.println("Bob attacks with: " + this.attacker.weapon.totalDMG + " DMG" );
-		System.out.println(this.monster.name + " HP: " + this.monster.hp);
+		
+		 //attack speed timer
+	      try {
+	    	 
+	          Thread.sleep((1*10*1000)/(this.attacker.weapon.attSpeed));
+	         
+	          	this.monster.hp -= this.attacker.weapon.totalDMG;
+		  		System.out.println("Bob attacks with: " + this.attacker.weapon.totalDMG + " DMG" );
+		  		System.out.println(this.monster.name + " HP: " + this.monster.hp);
+	          
+	        } catch (InterruptedException e) {
+	          e.printStackTrace();
+	        }
+	      
+		
+		
 	}
 }
