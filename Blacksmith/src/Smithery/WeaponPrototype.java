@@ -4,7 +4,7 @@ public class WeaponPrototype {
 	public int cost;
 	public int physDMGmin;
 	public int physDMGmax;
-	public double attSpeed;
+	public int attSpeed;
 	public double critChance;
 	public int attRange;
 	public String name;
@@ -16,34 +16,34 @@ public class WeaponPrototype {
 			this.cost = 100;
 			this.physDMGmin = 1;
 			this.physDMGmax = 10;
-			this.attSpeed = randomRange(1.0,1.5);
+			this.attSpeed = randomRange(10,15);
 			break;
 		case "shortsword":
 			this.name = "Short Sword";
 			this.cost = 50;
 			this.physDMGmin = 1;
 			this.physDMGmax = 5;
-			this.attSpeed = randomRange(1.2,1.5);
+			this.attSpeed = randomRange(12,15);
 			break;
 		case "longsword":
 			this.name = "Long Sword";
 			this.cost = 500;
 			this.physDMGmin = 5;
 			this.physDMGmax = 15;
-			this.attSpeed = randomRange(1.1,1.3);
+			this.attSpeed = randomRange(11,13);
 			break;
 		case "broadsword":
 			this.name = "Broad Sword";
 			this.cost = 300;
 			this.physDMGmin = 3;
 			this.physDMGmax = 12;
-			this.attSpeed = randomRange(1.2,1.4);
+			this.attSpeed = randomRange(12,14);
 			break;
 		}
 	}
 	
-	private double randomRange ( double min, double max) {
-		double range = (max - min);
-		return Math.round( ((Math.random() * range) + min)*10.0) /10.0; 
+	private int randomRange ( int min, int max) {
+		int range = (max - min);
+		return (int)(Math.random() * range) + min; 
 	}
 }
