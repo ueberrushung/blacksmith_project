@@ -1,23 +1,19 @@
 package Smithery;
 
-public class Material {
+public enum Material{
+	IRON("Iron",0,10),
+	STEEL("Steel",50,20);
 	
 	public int cost;
 	public int chance;
 	public String name;
 	
-	public Material( String material) {
-		switch(material) {
-		case "iron":
-			this.name = "Iron";
-			this.chance = 0;
-			this.cost = 10;
-			break;
-		case "steel":
-			this.name = "Steel";
-			this.chance = 50;
-			this.cost = 20;
-			break;
-		}
+	private Material(String name, int chance, int cost) {
+		this.cost = cost;
+		this.chance = chance;
+		this.name = name;
 	}
+	
 }
+
+	

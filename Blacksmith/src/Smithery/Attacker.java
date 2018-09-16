@@ -1,15 +1,8 @@
 package Smithery;
 
-public class Attacker {
+public class Attacker extends Competitor {
 
-	public Weapon weapon;
-	public int hp = 100;
-	public Attacker( Weapon weapon) {
-		this.weapon = weapon;
-		
-	}
-	public boolean alive() {
-		if(this.hp <= 0)return false;
-		else return true;
+	public Attacker(String name, Weapon weapon, int hp) {
+		super(Faction.ATTACKER, name,weapon,hp);
 	}
 }

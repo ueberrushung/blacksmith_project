@@ -1,47 +1,35 @@
 package Smithery;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 
 public class Battle {
 	
-	public Monster monster;
-	public Attacker attacker;
+	public List<ICompetitor> monsters;
+	public List<ICompetitor> attackers;
 	public static int deciseconds = 0;
 	public static int attTime = 0;
+	public long elapsedTime = 0;
+	public long updateRate = 10;
 	
 	
-	public Battle( Attacker attacker, Monster monster) {
-		this.attacker = attacker;
-		this.monster = monster;
+	public Battle(Collection<ICompetitor> attacker, Collection<ICompetitor> monster) {
+		this.attackers = new ArrayList<>(attackers);
+		this.monsters = new ArrayList<>(monsters);
 	}
 	
-	public void fight() {
-		System.out.println("Bob has: ");
-		this.attacker.weapon.print();
-		System.out.println("");
-		System.out.println("Monster has: "+  this.monster.hp + " HP");
-		while( this.monster.alive() && this.attacker.alive() ) {		
-			attack();
+	public void update(long elapsed) {
+		elapsedTime += elapsed;
+		if(elapsed>=100) {
+			for(ICompetitor a:attackers) {
+				a.tick(this);
+			}
+			for(ICompetitor m:monsters) {
+				m.tick(this);
+			}
+			elapsedTime=0;
 		}
-	}
-	
-	private void attack() {
-		
-		 //attack speed timer
-	      try {
-	    	 
-	          Thread.sleep((1*10*1000)/(this.attacker.weapon.attSpeed));
-	         
-	          	this.monster.hp -= this.attacker.weapon.totalDMG;
-		  		System.out.println("Bob attacks with: " + this.attacker.weapon.totalDMG + " DMG" );
-		  		System.out.println(this.monster.name + " HP: " + this.monster.hp);
-	          
-	        } catch (InterruptedException e) {
-	          e.printStackTrace();
-	        }
-	      
-		
-		
 	}
 }

@@ -1,27 +1,18 @@
 package Smithery;
 
-public class Monster {
-
-	public int hp;
-	public int attDMG;
-	public int attSpeed;
-	public String name;
+public class Monster extends Competitor {
 	
-	public Monster(String monstertype) {
-		switch (monstertype) {
-		case "goblin":
-			this.name = "Goblin";
-			this.hp = 100;
-			break;
-		case "orc":
-			this.name = "Orc";
-			this.hp = 1000;
-			break;
-		}
+	private static Weapon orcWeapon = new Weapon(1,1,1);
+	
+	public Monster(String name, Weapon weapon, int hp) {
+		super(Faction.MONSTER,name,weapon,hp);
 	}
 	
-	public boolean alive() {
-		if(this.hp <= 0)return false;
-		else return true;
+	public static Monster createOrc(){
+		return new Monster("Orc", orcWeapon, 1000);
+	}
+	
+	public static Monster createGoblin() {
+		return new Monster("Goblin", orcWeapon, 100);
 	}
 }

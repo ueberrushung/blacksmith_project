@@ -10,14 +10,21 @@ public class Weapon {
 	public Material material;
 	public WeaponPrototype weaponPrototype;
 	
-	public Weapon(String ore, String prototype) {
-		this.material = new Material(ore);
-		this.weaponPrototype = new WeaponPrototype(prototype);
+	public Weapon(Material material, WeaponPrototype weaponPrototype) {
+		this.material = material;
+		this.weaponPrototype = weaponPrototype;
 		this.physDMG = getDMGByChance(weaponPrototype.physDMGmin, weaponPrototype.physDMGmax, material.chance);
 		this.totalDMG = this.physDMG;
 		this.attSpeed = weaponPrototype.attSpeed;
 		this.dps = (int)((double)this.totalDMG * this.attSpeed);
 		this.cost = weaponPrototype.cost + material.cost;
+	}
+	
+	//for Monster Weapons
+	public Weapon(int physDMG,int totalDMG, int attSpeed) {
+		this.physDMG = physDMG;
+		this.totalDMG = totalDMG;
+		this.attSpeed = attSpeed;
 	}
 	
 	//to String function

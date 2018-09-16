@@ -3,58 +3,45 @@ package Smithery;
 public class Game implements Runnable {
 	  public static final int FPS = 60;
 	  public static final long maxLoopTime = 1000 / FPS;
-	  public static int deciseconds = 0;
-	  public static int attTime = 0;
+	  public boolean running = true;
+	  public static Battle battle;
 	
 	  public static void main(String[] arg) {
-	    Game game = new Game();
+	    Game game = new Game(battle);
 	    new Thread(game).start();
 	  }
-	 
-	  public boolean running = true;
-	 
-	  @Override
+	  
+	  public Game(Battle battle) {
+		this.battle= battle;
+	}
+
+	@Override
 	  public void run() {
-		  
-	    long timestamp;
-	    long oldTimestamp;
+	    long oldTimestamp=System.currentTimeMillis(),
+	    	 currentTimestamp,
+	    	 elapsedTime;
 	    
 	    
 	    while(running) {
-	    	
-	    	
-	    	
-	      oldTimestamp = System.currentTimeMillis();
-	      update();
-	      timestamp = System.currentTimeMillis();
-	     
-	      
-	      render();
-	      
-	      timestamp = System.currentTimeMillis();
-	 
-	      //attack speed timer
-	      try {
-	          Thread.sleep(100);
-	          deciseconds += 1;
-	          attTime = (Math.round( (int)(Math.round(deciseconds) ) ) );
-	          
-	        } catch (InterruptedException e) {
-	          e.printStackTrace();
-	        }
-	      if(attTime % 22 == 0 ) {
-	    	  System.out.println(attTime);
-	      }
-	      
-	      if(timestamp-oldTimestamp <= maxLoopTime) {
-	        try {
-	          Thread.sleep(maxLoopTime - (timestamp-oldTimestamp) );
-	        } catch (InterruptedException e) {
-	          e.printStackTrace();
-	        }
-	      }
+	    	currentTimestamp = System.currentTimeMillis();
+	    	elapsedTime = currentTimestamp-oldTimestamp;
+//    		update(elapsedTime);
+//    		render(elapsedTime);
+    		oldTimestamp=maxLoopTime;
 	    }
 	  }
-	  void update() { }
-	  void render() { }
+	  
+	 void updateBattle(long elapsed) {
+		  this.battle.update(elapsed);
+	  }
+	 
+//	  void update(long elapsed) {
+//		  doBattleTick(elapsed);
+//	  }
+	  
+	 
+	  
+//	  void render(long elapsedTime) {
+//		  this.renderer.update(elapsedTime)
+//	  }
 	}
